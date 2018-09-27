@@ -1,0 +1,37 @@
+version: '2'
+services:
+  web:
+    container_name: hello
+    image: hello
+    build:
+      context: .
+      dockerfile: containers/hello/Dockerfile
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
+    command: bash /app/run.sh
+    environment:
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      no_proxy: ${no_proxy},eve-enr-search
+      HOME: /app
+      MIN_THREADS: 1
+      MAX_THREADS: 8
+      WORKERS: 0
+      SKIP_CROSSING: "true"
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      
+    volumes:
+      - .:/app
+    ports:
+      - 4000:4000
+    stdin_open: true
+    tty: true
+    user: root
+networks:
+  default:
+    external:
+      name: vis-network
