@@ -2,7 +2,7 @@
 
 FROM elixir:1.7
 
-ENV APP_HOME=/usr/src/app
+ENV APP_HOME=/app
 
 # Install debian packages
 RUN apt-get update
@@ -22,6 +22,6 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install nodejs
 
-COPY . $APP_HOME
+#COPY . $APP_HOME
 
 EXPOSE 4000

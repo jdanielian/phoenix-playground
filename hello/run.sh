@@ -20,8 +20,8 @@ fi
 
 # Install JS libraries
 echo "\nInstalling JS..."
-cd assets && npm install
-cd ..
+# cd assets && npm install
+# cd ..
 
 mix local.rebar --force
 
